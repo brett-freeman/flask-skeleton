@@ -1,14 +1,12 @@
 flask-skeleton
 ==============
 
-A simple skeleton for quickly setting up a flask app. Utilizes flask-classy for views and flask-sqlalchemy for the ORM.
+A simple skeleton for quickly setting up a flask app. Utilizes flask-classy for views and flask-sqlalchemy for the ORM
 
-All requirements to get up and running are included in requirements.txt
-
-Page title is stored in a global variable before each request from an app config variable and displayed in the base template. You can add additional text after by defining title during template rendering.
+All package dependencies needed to get up and running are included in requirements.txt
 
 Read flask-classy docs if you are unsure how flask-classy functions
 
-manage.py used for database migrations with flask-alembic
+manage.py included for database migrations with flask-alembic
 
-Put your favicon.ico in static root
+Put your favicon.ico in /static
