@@ -10,3 +10,5 @@ Page title is stored in a global variable before each request from an app config
 Read flask-classy docs if you are unsure how flask-classy functions
 
 manage.py used for database migrations with flask-alembic
+
+Put your favicon.ico in static root
