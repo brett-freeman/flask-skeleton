@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, g, session, flash
+from flask import Flask, send_from_directory, g
 from flask.ext.sqlalchemy import SQLAlchemy
 
 import os
@@ -10,7 +10,7 @@ db = SQLAlchemy(app)
 
 @app.before_request
 def before_request():
-    pass
+    g.site_title = app.config.get('SITE_TITLE')
 
 @app.route('/favicon.ico')
 def favicon():

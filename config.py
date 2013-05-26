@@ -10,3 +10,5 @@ CSRF_ENABLED = True
 CSRF_SESSION_LKEY = ''
 
 SECRET_KEY = ''
+
+SITE_TITLE = 'flask-skeleton'
