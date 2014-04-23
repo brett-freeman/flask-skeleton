@@ -1,14 +1,29 @@
 import os
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-DEBUG = True
+class Config:
+	SECRET_KEY = os.environ.get('SECRET_KEY')
 
-SQLALCHEMY_DATABASE_URI = ''
-SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+class DevelopmentConfig(Config):
+	DEBUG = True
+	SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret_key_here'
+	SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
+		'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
 
-CSRF_ENABLED = True
-CSRF_SESSION_LKEY = ''
+class TestingConfig (Config):
+	TESTING = True
+	SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
+		'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
 
-SECRET_KEY = ''
+class ProductionConfig(Config):
+	SQLALCHEMY_DATABASE_URI = os.environ.get('CAST_DATABASE_URL') or \
+		'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
-SITE_TITLE = 'flask-skeleton'
+config = {
+	'development': DevelopmentConfig,
+	'testing':	TestingConfig,
+	'production': ProductionConfig,
+
+	'default': DevelopmentConfig
+}

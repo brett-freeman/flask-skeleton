@@ -1,11 +1,6 @@
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>{{g.site_title}}{{title}}</title>
-</head>
-<body>
-<div id="container">
-    {% block content %}{% endblock %}
-</div>
-</body>
-</html>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Title{% endblock %}
+
+{% block content %}
+{% endblock %}

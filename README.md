@@ -5,8 +5,4 @@ A simple skeleton for quickly setting up a flask app. Utilizes flask-classy for 
 
 All package dependencies needed to get up and running are included in requirements.txt
 
-Read flask-classy docs if you are unsure how flask-classy works
-
-manage.py included for database migrations with flask-alembic
-
-Put your favicon.ico in /static
+Version 2.0 now uses blueprints in place of flask-classy, as well as highly improved structure.

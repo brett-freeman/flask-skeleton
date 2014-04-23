@@ -1,21 +1,22 @@
-from flask import Flask, send_from_directory, g
+from flask import Flask
+from config import config
+
+from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
 
-import os
+bootstrap = Bootstrap()
+db = SQLAlchemy()
 
-app = Flask(__name__)
-app.config.from_object('config')
+def create_app(config_name):
+	app = Flask(__name__)
+	app.config.from_object(config[config_name])
 
-db = SQLAlchemy(app)
+	# Register our blueprints
+	from .default import default as default_blueprint
+	app.register_blueprint(default_blueprint)
 
-@app.before_request
-def before_request():
-    g.site_title = app.config.get('SITE_TITLE')
+	# Initialize any extensions we are using
+	bootstrap.init_app(app)
+	db.init_app(app)
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-        'favicon.ico', mimetype='image/vnd.microsoft.icon')
-
-from app.views.default import DefaultView
-DefaultView.register(app)
+	return app

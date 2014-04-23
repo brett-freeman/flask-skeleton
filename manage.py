@@ -1,9 +1,9 @@
-from app import application as app
+import os
+from app import create_app
 from flask.ext.script import Manager
-from flask.ext.alembic import ManageMigrations
 
+app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
-manager.add_command("migrate", ManageMigrations())
 
-if __name__ == "__main__":
-    manager.run()
+if __name__ == '__main__':
+	manager.run()
